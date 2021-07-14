@@ -52,6 +52,11 @@ export default function Home() {
     id: 651861561610,
     title: 'Cabras não tem muitas ambições',
     image: 'https://img10.orkut.br.com/community/99265afeff3b5c002ecf9e29506e015b.png'
+  },
+  {
+    id: 6546156816,
+    title: 'EU AMO CHOCOLATE!',
+    image: 'https://img10.orkut.br.com/community/1ae6440ef13da409ef42132a76814b33.jpg'
   }]);
   const githubUser = "LucasLBF"; 
   const favoritePeople = [
@@ -60,8 +65,57 @@ export default function Home() {
     'peas',
     'rafaballerini',
     'marcobrunodev',
-    'felipefialho'
+    'felipefialho',
+    'rochacbruno',
+    'csev'
   ];
+
+  function RenderBoxContents(props) {
+    if (props.content === 'communities') {
+      return (
+        <>
+          <h2 className="smallTitle">
+            Comunidades ({communities.length})
+          </h2>
+          <ul>
+            {communities.map((item, index) => {
+              if (index < 6) {
+                return (
+                  <li key={item.id}>
+                    <a href={`/communities/${item.title}`}>
+                      <img src={item.image}/>
+                      <span>{item.title}</span>
+                    </a>
+                  </li>
+                )
+              }
+            })}
+          </ul>
+        </>
+      )
+    
+    } else if (props.content === 'people') {
+      return (
+        <>
+          <h2 className="smallTitle">
+            Pessoas da Comunidade ({favoritePeople.length})
+          </h2>
+          <ul>
+            {favoritePeople.slice(0, 6).map((person) => {
+              return (
+                <li>
+                  <a href={`https://github.com/${person}`}>
+                    <img src={`https://github.com/${person}.png`}/>
+                    <span>{person}</span>
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </>
+      )
+    }
+  };
 
   return (
     <>
@@ -116,42 +170,15 @@ export default function Home() {
 
         <div className="profileRelationsArea" style={{ gridArea: "profileRelationsArea" }}>
           <ProfileRelationsBoxWrapper>
-            <h2 className="smallTitle">
-              Comunidades ({communities.length})
-            </h2>
-            <ul>
-                {communities.map((community, index) => {
-                  if (index < 6) {
-                    return (
-                      <li key={community.id}>
-                        <a href={`/communities/${community.title}`}>
-                          <img src={community.image} />
-                          <span>{community.title}</span>
-                        </a>
-                      </li>
-                    )
-                  }
-                })}
-              </ul>
+            <RenderBoxContents content="communities"/>
+            <hr/>
+            <a href="" className="boxLink">Ver todos</a>
           </ProfileRelationsBoxWrapper>
 
           <ProfileRelationsBoxWrapper>
-            <h2 className="smallTitle">
-              Pessoas da comunidade ({favoritePeople.length})
-            </h2>
-            <ul>
-              {favoritePeople.map((person) => {
-                return (
-                  <li key={person}>
-                    <a href={`https://github.com/${person}`}>
-                      <img src={`https://github.com/${person}.png`} />
-                      <span>{person}</span>
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-
+            <RenderBoxContents content="people"/>
+            <hr/>
+            <a href="" className="boxLink">Ver todos</a>
           </ProfileRelationsBoxWrapper>
         </div>           
       </MainGrid>
