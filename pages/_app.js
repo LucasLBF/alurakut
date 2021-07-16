@@ -11,9 +11,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-image: url(https://ze-robot.com/dl/ni/night-city-cyberpunk-2077-2560%C3%971440.jpg);
+    //background-image: url(https://ze-robot.com/dl/ni/night-city-cyberpunk-2077-2560%C3%971440.jpg);
     background-size: cover;
-    //background-color: #D9E6F6;
+    background-color: #D9E6F6;
     font-family: sans-serif;
   }
 
